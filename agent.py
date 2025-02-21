@@ -12,7 +12,7 @@ print(prompt)
 
 client = InferenceClient(
     model = "meta-llama/Llama-3.2-3B-Instruct",
-    token = HF_TOKEN
+    #token = HF_TOKEN
     )
 output = client.chat.completions.create(
     messages=[
