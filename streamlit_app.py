@@ -77,4 +77,6 @@ if st.button("Send") and user_input:
     )
     st.write("Model name:", output.model, '\n')
     st.write("Answer:", final_output.choices[0].message.content)
-    
+
+
+
