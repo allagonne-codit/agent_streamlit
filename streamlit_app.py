@@ -51,8 +51,8 @@ st.markdown(f"""
 
 st.title("Basic Chatbot with Hugging Face")
 
-HF_TOKEN = os.getenv("HF_TOKEN")
-client = InferenceClient(model="meta-llama/Llama-2-7b-chat-hf", token=HF_TOKEN)
+HF_TOKEN = '' #os.getenv("HF_TOKEN")
+client = InferenceClient(model="meta-llama/Llama-2-7b-chat-hf")#, token=HF_TOKEN)
 
 user_input = st.text_input("Your message:", value="")
 if st.button("Send") and user_input:
