@@ -8,6 +8,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains.llm import LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain.chains import RetrievalQA
+from functions import get_weather
 #from agent import new_prompt
 from huggingface_hub import InferenceClient
 from prompts import prompt
@@ -60,11 +61,13 @@ print("Model name:", client.model)
 user_input = st.text_input("Your message:", value="")
 prompt = prompt + user_input
 if st.button("Send") and user_input:
-    response = client.chat.completions.create(
+    output = client.chat.completions.create(
         messages=[{"role": "user", "content": prompt}],
         stream=False,
-        max_tokens=50
+        max_tokens=200,
+        stop = ["Observation:"]
     )
-    st.write("Model name:", response.model, '\n')
-    st.write("Answer:", response.choices[0].message.content)
+    new_prompt=prompt+output.choices[0].message.content+get_weather('London')
+    st.write("Model name:", output.model, '\n')
+    st.write("Answer:", output.choices[0].message.content)
     
