@@ -52,8 +52,10 @@ st.markdown(f"""
 st.title("Basic Chatbot with Hugging Face")
 
 HF_TOKEN = '' #os.getenv("HF_TOKEN")
-client = InferenceClient(model="meta-llama/Llama-2-7b-chat-hf")#, token=HF_TOKEN)
-
+client = InferenceClient(
+    model=None,#"meta-llama/Llama-2-7b-chat-hf"
+    )#, token=HF_TOKEN)
+print("Model name:", client.model)
 user_input = st.text_input("Your message:", value="")
 if st.button("Send") and user_input:
     response = client.chat.completions.create(
@@ -61,5 +63,6 @@ if st.button("Send") and user_input:
         stream=False,
         max_tokens=50
     )
-    st.write("Bot:", response.choices[0].message.content)
+    st.write("Model name:", response.model, '\n')
+    st.write("Answer:", response.choices[0].message.content)
     
