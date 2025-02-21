@@ -62,3 +62,4 @@ if st.button("Send") and user_input:
         max_tokens=50
     )
     st.write("Bot:", response.choices[0].message.content)
+    
