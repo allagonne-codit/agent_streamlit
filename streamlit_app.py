@@ -68,6 +68,13 @@ if st.button("Send") and user_input:
         stop = ["Observation:"]
     )
     new_prompt=prompt+output.choices[0].message.content+get_weather('London')
+    final_output = client.chat.completions.create(
+        messages=[
+            {"role": "user", "content": new_prompt},
+        ],
+        stream=False,
+        max_tokens=200,
+    )
     st.write("Model name:", output.model, '\n')
-    st.write("Answer:", output.choices[0].message.content)
+    st.write("Answer:", final_output.choices[0].message.content)
     
