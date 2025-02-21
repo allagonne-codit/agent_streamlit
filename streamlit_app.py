@@ -8,7 +8,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains.llm import LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain.chains import RetrievalQA
-from agent import new_prompt
+#from agent import new_prompt
 from huggingface_hub import InferenceClient
 import os
 # color palette
