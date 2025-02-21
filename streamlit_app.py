@@ -67,7 +67,7 @@ if st.button("Send") and user_input:
         max_tokens=200,
         stop = ["Observation:"]
     )
-    new_prompt=prompt+output.choices[0].message.content+get_weather('London')
+    new_prompt=prompt+output.choices[0].message.content+get_weather('Paris')
     final_output = client.chat.completions.create(
         messages=[
             {"role": "user", "content": new_prompt},
