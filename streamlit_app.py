@@ -10,6 +10,7 @@ from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain.chains import RetrievalQA
 #from agent import new_prompt
 from huggingface_hub import InferenceClient
+from prompts import prompt
 import os
 # color palette
 primary_color = "#1E90FF"
@@ -57,9 +58,10 @@ client = InferenceClient(
     token=HF_TOKEN)
 print("Model name:", client.model)
 user_input = st.text_input("Your message:", value="")
+prompt = prompt + user_input
 if st.button("Send") and user_input:
     response = client.chat.completions.create(
-        messages=[{"role": "user", "content": user_input}],
+        messages=[{"role": "user", "content": prompt}],
         stream=False,
         max_tokens=50
     )
